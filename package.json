@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/nextjs": "^6.32.0",
     "@clerk/themes": "^1.7.5",
     "@hookform/resolvers": "^3.1.1",
     "@radix-ui/react-label": "^2.0.2",
@@ -33,15 +32,24 @@
     "lucide-react": "^0.260.0",
     "micro": "^10.0.1",
     "mongoose": "^7.3.4",
+<<<<<<< HEAD
     "next": "^15.5.3",
     "postcss": "^8.5.6",
+=======
+    "next": "13.4.10",
+    "postcss": "8.4.26",
+>>>>>>> 7ed60980bbfc375c3874bfd8382b2aae00b915ca
     "prettier": "^3.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.1",
     "svix": "^1.7.0",
     "tailwind-merge": "^1.13.2",
+<<<<<<< HEAD
     "tailwindcss": "^3.4.17",
+=======
+    "tailwindcss": "3.3.3",
+>>>>>>> 7ed60980bbfc375c3874bfd8382b2aae00b915ca
     "tailwindcss-animate": "^1.0.6",
     "typescript": "5.1.6",
     "uploadthing": "^5.2.0",

@@ -1,5 +1,5 @@
 import AccountProfile from "@/components/forms/AccountProfile";
-import {currentUser} from '@clerk/next.js'
+import {currentUser} from '@clerk/nextjs/server';
 
 async function Page() {
     const user=await currentUser();
@@ -19,7 +19,9 @@ async function Page() {
                 Complete your profile now to use Campus Connect
             </p>
             <section className="mt-9 bg-dark-2 p-10">
-                <AccountProfile user={userData} btnTitle="Continue" />
+                <AccountProfile 
+                user={userData} 
+                btnTitle="Continue" />
             </section>
         </main>
     )

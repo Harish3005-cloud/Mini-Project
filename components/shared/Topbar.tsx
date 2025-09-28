@@ -2,7 +2,7 @@ import { SignedIn, SignOutButton, OrganizationSwitcher } from "@clerk/nextjs";
 
 import Link from "next/link";
 import Image from "next/image";
-import { dark } from "@clerk/themes";
+import { dark } from "@clerk/themes"
 
 function Topbar() {
     const isUserLoggedIn = true;
@@ -30,8 +30,13 @@ function Topbar() {
                     appearance={{
                         baseTheme: dark,
                         elements: {
-                            card: "bg-dark-1 border-dark-4",
-                            organizationSwitcherTrigger: "py-2 px-4 text-light-1"
+                            headerTitle: 'text-white',
+                            headerSubtitle: 'text-white',
+                            formFieldLabel: 'text-white',
+                            formFieldInput: 'bg-dark-3 text-white border-dark-4',
+                            footerActionLink: 'text-primary-500 hover:text-primary-400',
+                            
+                            organizationSwitcherTrigger: "py-2 px-4 text-light-1  hover:text-light-1"
                         }
                     }}
                 />

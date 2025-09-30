@@ -2,18 +2,28 @@
 import User from "../models/user.model"
 import {connectToDB} from "../validations/mongoose"
 import { revalidatePath } from "next/cache";
-export async function updateUser(
+interface params{
     userId:string,
     username:string,
     name:string,
     bio:string,
-    path: string,
+    path:string,
     image:string,
+}
+export async function updateUser({
+    userId,
+    username,
+    name,
+    bio,
+    path,
+    image,
 
-): Promise<void> {
+}:params ): Promise<void> {
     // Update user logic here
     connectToDB();
 
+    try {
+        
     await User.findOneAndUpdate(
         {id:userId},
         {username: username.toLowerCase(),
@@ -32,6 +42,11 @@ export async function updateUser(
     if(path==='/profile/edit'){
         revalidatePath(path);
     }
+        
+    } catch (error: any) {
+        throw new Error(`Failed to Create/update user: ${error.message}`);
+        
+    }
 
-    console.log("User updated");
+    // console.log("User updated");
 }

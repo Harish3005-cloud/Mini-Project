@@ -1,7 +1,9 @@
-export default function Home() {
+export default async function Home() {
+  // const results=await fetchPosts();
+
   return (
     <main>
-      <h1>CampusConnect</h1>
+      <h1></h1>
     </main>
   );
 }

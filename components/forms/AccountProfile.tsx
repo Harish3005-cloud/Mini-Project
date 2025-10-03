@@ -1,9 +1,10 @@
 "use client"
+
 import { Button } from "@/components/ui/button"
+import { useForm } from 'react-hook-form';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -11,14 +12,11 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { useForm } from 'react-hook-form';
 import {zodResolver} from '@hookform/resolvers/zod';
-import User from '@/lib/models/user.model';
 import { UserValidation } from '@/lib/validations/user';
-import { z } from "zod"
+import * as  z  from "zod"
 import Image from "next/image";
-import { ChangeEvent } from "react";
-import React, { useState } from "react";
+import { ChangeEvent , useState } from "react";
 import { isBase64Image } from "@/lib/utils";
 import {useUploadThing} from '@/lib/uploadthing';
 import { updateUser } from "@/lib/actions/users.actions"
@@ -134,7 +132,8 @@ const AccountProfile=({ user, btnTitle }: Props)=> {
                    className="account-form_image-input"
                    onChange={(e)=> handleImage(e, field.onChange)}
                  />
-              </FormControl>           
+              </FormControl> 
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -151,8 +150,10 @@ const AccountProfile=({ user, btnTitle }: Props)=> {
                 <Input
                    type="text" 
                    className="account-form_input no-focus"
+                   {...field}
                  />
               </FormControl>           
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -169,8 +170,10 @@ const AccountProfile=({ user, btnTitle }: Props)=> {
                 <Input
                    type="text" 
                    className="account-form_input no-focus"
+                   {...field}
                  />
-              </FormControl>           
+              </FormControl>    
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -187,8 +190,10 @@ const AccountProfile=({ user, btnTitle }: Props)=> {
                 <Textarea
                    rows={10}
                    className="account-form_input no-focus"
+                   {...field}
                  />
-              </FormControl>           
+              </FormControl>    
+              <FormMessage />
             </FormItem>
           )}
         />

@@ -49,11 +49,11 @@ const ThreadCard = ({
                   <div className="flex flex-col items-center">
                     <Link href={`/profile/${author.id}`} className="relative h-11 w-11">
                     <Image
-                    src={author.image}
+                    src={author.image }
                     alt="Profile image"
                     fill
                     className="cursor-pointer rounded-full"
-                    /> 
+                    />
 
                     </Link>
                     <div className="thread-card_bar"/>

@@ -11,23 +11,29 @@ const LeftSidebar = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const { userId } = useAuth();
+  const { userId, isLoaded } = useAuth();
 
   return (
     <section className='custom-scrollbar leftsidebar'>
       <div className='flex w-full flex-1 flex-col gap-6 px-6'>
         {sidebarLinks.map((link) => {
-          const isActive =
-            (pathname.includes(link.route) && link.route.length > 1) ||
-            pathname === link.route;
+          const href =
+            link.route === "/profile"
+              ? isLoaded && userId
+                ? `${link.route}/${userId}`
+                : null
+              : link.route;
 
-          if (link.route === "/profile") link.route = `${link.route}/${userId}`;
+          if (href === null) return null;
+
+          const isActive =
+            (pathname.includes(href) && href.length > 1) || pathname === href;
 
           return (
             <Link
-              href={link.route}
+              href={href}
               key={link.label}
-              className={`leftsidebar_link ${isActive && "bg-primary-500 "}`}
+              className={`leftsidebar_link ${isActive ? "bg-primary-500" : ""}`}
             >
               <Image
                 src={link.imgURL}

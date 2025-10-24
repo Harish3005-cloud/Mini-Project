@@ -21,9 +21,9 @@ async function Page() {
     });
   return (
     <section >
-        <h1 className="head-text mb-10"> search </h1>
+        <h1 className="head-text mb-10">Search</h1>
         {/* Search Bar */}
-        <div className="mt-14 flex felx-col gap-9">
+        <div className="mt-10 flex flex-col gap-5">
             {result?.users.length===0 ? (
               <p className="no-result">No users</p>  
             )

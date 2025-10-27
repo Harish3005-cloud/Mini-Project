@@ -12,6 +12,15 @@ const postSchema = new mongoose.Schema({
         ref: 'Community',
         default: null,
     },
+    likes: {
+        type: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User'
+            }
+        ],
+        default: []
+    },
     createdAt: {
         type: Date,
         default: Date.now
@@ -26,7 +35,11 @@ const postSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Post'
         }
-    ]
+    ],
+    likesCount: {
+        type: Number,
+        default: 0
+    }
 });
 const Post = mongoose.models.Post || mongoose.model("Post", postSchema);
 export default Post;

@@ -15,15 +15,16 @@ export default async function Home() {
         <>
          {results.posts.map((posts)=>(
           <ThreadCard
-          key={posts._id}
-          id={posts._id}
+          key={posts._id.toString()}
+          id={posts._id.toString()}
           currentUserId={user?.id || ""}
           parentId={posts.parentId}
           content={posts.text}
           author={posts.author}
           community={posts.community}
-          createdAt={posts.createdAt}
+          createdAt={posts.createdAt?.toISOString ? posts.createdAt.toISOString() : (posts.createdAt as any)}
           comments={posts.children}
+          likesCount={posts.likesCount || 0}
           />
          ))}
         </>

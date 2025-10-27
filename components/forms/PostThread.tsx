@@ -1,5 +1,5 @@
 "use client"
-import {createPost} from "@/lib/actions/post.actions";
+import { createThread} from "@/lib/actions/post.actions";
 import { Button } from "@/components/ui/button"
 import { useForm } from 'react-hook-form';
 import {
@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/form"
 import { Textarea } from "@/components/ui/textarea"
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useOrganization } from "@clerk/nextjs";
 
 import * as  z from "zod"
 import { usePathname, useRouter } from 'next/navigation';
@@ -31,7 +32,7 @@ function PostThread({ userId }: { userId: string }) {
    
     const router = useRouter();
     const pathname = usePathname();
-
+    const {organization} = useOrganization();
     const form = useForm({
         resolver: zodResolver(ThreadValidation ),
         defaultValues: {
@@ -40,15 +41,19 @@ function PostThread({ userId }: { userId: string }) {
         }
         });
         const onSubmit= async(values:z.infer<typeof ThreadValidation>) =>{
-            await createPost({
+            
+            
+            await createThread({
                 text:values.thread,
                 author:userId, 
-                communityId:null,
+                communityId:organization ? organization.id:null,
                 path:pathname
 
             });
             router.push("/")
-        }
+        
+    }
+        
     return (
         <Form {...form}>
             <form

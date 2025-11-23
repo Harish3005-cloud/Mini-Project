@@ -4,7 +4,7 @@ import { fetchThreadById } from "@/lib/actions/post.actions"
 import { fetchUser } from "@/lib/actions/users.actions"
 import { currentUser } from "@clerk/nextjs/server"
 import {redirect} from "next/navigation"
-const Page = async ({ params }: { params: { id: string } }) => {
+const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
     if (!params) return null;
 
     // await params and extract id to satisfy Next.js requirement
@@ -25,14 +25,14 @@ const Page = async ({ params }: { params: { id: string } }) => {
 <section className="relative">
     <div>
     <ThreadCard
-          key={thread._id}
-          id={thread._id}
+          key={String(thread._id)}
+          id={String(thread._id)}
           currentUserId={user?.id || ""}
-          parentId={thread.parentId}
+          parentId={thread.parentId ? String(thread.parentId) : null}
           content={thread.text}
           author={thread.author}
           community={thread.community}
-          createdAt={thread.createdAt}
+          createdAt={thread.createdAt?.toISOString ? thread.createdAt.toISOString() : String(thread.createdAt)}
           comments={thread.children}
           /> 
           
@@ -49,14 +49,14 @@ const Page = async ({ params }: { params: { id: string } }) => {
     <div className="mt-10">
         {thread.children.map((childItem:any) => (
         <ThreadCard
-          key={childItem._id}
-          id={childItem._id}
-          currentUserId={childItem?.id || ""}
-          parentId={childItem.parentId}
+          key={String(childItem._id)}
+          id={String(childItem._id)}
+          currentUserId={user?.id || ""}
+          parentId={childItem.parentId ? String(childItem.parentId) : null}
           content={childItem.text}
           author={childItem.author}
           community={childItem.community}
-          createdAt={childItem.createdAt}
+          createdAt={childItem.createdAt?.toISOString ? childItem.createdAt.toISOString() : String(childItem.createdAt)}
           comments={childItem.children}
           isComment
           /> 

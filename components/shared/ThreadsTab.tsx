@@ -22,10 +22,10 @@ return (
      {result.threads.map((thread: any)=>(
         <ThreadCard
               
-                key={thread._id}
-                id={thread._id}
+                key={String(thread._id)}
+                id={String(thread._id)}
                 currentUserId={currentUserId}
-                parentId={thread.parentId}
+                parentId={thread.parentId ? String(thread.parentId) : null}
                 content={thread.text}
                 author={
                     accountType === 'User'
@@ -33,7 +33,7 @@ return (
                     {name: thread.author.name, image:thread.author.image, id:thread.author.id}
                 }  //todo
                 community={thread.community} //todo
-                createdAt={thread.createdAt}
+                createdAt={thread.createdAt?.toISOString ? thread.createdAt.toISOString() : String(thread.createdAt)}
                 comments={thread.children}
                       
         

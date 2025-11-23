@@ -9,14 +9,16 @@ import { fetchUser } from "@/lib/actions/users.actions";
 import { fetchCommunityDetails } from "@/lib/actions/community.actions";
 import UserCard from "@/components/cards/UserCard";
 
-async function Page({params}:{params:{id:string}}) {
+async function Page({params}:{params:Promise<{id:string}>}) {
     const user = await currentUser();
 
     if (!user) return null;
 
+    // Await params before using
+    const { id } = await params;
 
-    const  profile = await fetchUser(params.id);
-    const communnityDetails = await fetchCommunityDetails(params.id); 
+    const  profile = await fetchUser(id);
+    const communnityDetails = await fetchCommunityDetails(id); 
 
     if (!profile) {
         return null;

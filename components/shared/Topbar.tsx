@@ -26,20 +26,22 @@ function Topbar() {
 
 
                 </div>
-                <OrganizationSwitcher
-                    appearance={{
-                        baseTheme: dark,
-                        elements: {
-                            headerTitle: 'text-white',
-                            headerSubtitle: 'text-white',
-                            formFieldLabel: 'text-white',
-                            formFieldInput: 'bg-dark-3 text-white border-dark-4',
-                            footerActionLink: 'text-primary-500 hover:text-primary-400',
-                            
-                            organizationSwitcherTrigger: "py-2 px-4 text-light-1  hover:text-light-1"
-                        }
-                    }}
-                />
+                <SignedIn>
+                    <OrganizationSwitcher
+                        appearance={{
+                            baseTheme: dark,
+                            elements: {
+                                headerTitle: 'text-white',
+                                headerSubtitle: 'text-white',
+                                formFieldLabel: 'text-white',
+                                formFieldInput: 'bg-dark-3 text-white border-dark-4',
+                                footerActionLink: 'text-primary-500 hover:text-primary-400',
+                                
+                                organizationSwitcherTrigger: "py-2 px-4 text-light-1  hover:text-light-1"
+                            }
+                        }}
+                    />
+                </SignedIn>
 
             </div>
 
